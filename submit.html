@@ -1,0 +1,26 @@
+--TGIS IS THE PAGE THAT IS SHOWN WHEN BIDDING IS DONE--
+
+//This part of the page is incomplete and not responsive
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+function submitBid(productId) {
+    var userId = $('#user-id').val();  // Assuming you have an input field for user ID
+    var bidAmount = $('#bid-amount').val();  // Assuming you have an input field for bid amount
+
+    $.ajax({
+        url: '/place_bid/' + productId,
+        type: 'POST',
+        contentType: 'application/json',
+        data: JSON.stringify({ user_id: userId, bid_amount: bidAmount }),
+        success: function(response) {
+            alert(response.message);
+        },
+        error: function(error) {
+            console.log(error);
+        }
+    });
+}
+</script>
+
+<button onclick="submitBid(1)">Submit a bid</button>
